@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turister.Server", "Turister\Server\Turister.Server.csproj", "{98AED96F-1D43-4826-BE49-4E4F3A37CEC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turister.Server", "Turister\Server\Turister.Server.csproj", "{98AED96F-1D43-4826-BE49-4E4F3A37CEC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turister.Client", "Turister\Client\Turister.Client.csproj", "{BD08C1E9-FDC1-4CFB-A4EB-09EABD4A302E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turister.Client", "Turister\Client\Turister.Client.csproj", "{BD08C1E9-FDC1-4CFB-A4EB-09EABD4A302E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turister.Shared", "Turister\Shared\Turister.Shared.csproj", "{C66BBE65-7DC4-47B6-8E2F-88AAC7AA7F42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turister.Shared", "Turister\Shared\Turister.Shared.csproj", "{C66BBE65-7DC4-47B6-8E2F-88AAC7AA7F42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
