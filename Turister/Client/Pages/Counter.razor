@@ -1,16 +1,26 @@
 ﻿@page "/counter"
+@inject CounterState State
+@using Turister.Client.State
 
 <h1>Counter</h1>
 
-<p>Current count: @currentCount</p>
+<p>Current count: @State.Count</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int currentCount = 0;
-
     private void IncrementCount()
     {
-        currentCount++;
+        State.Count++;
+    }
+
+    protected override void OnInitialized()
+    {
+        State.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        State.OnChange -= StateHasChanged;
     }
 }
