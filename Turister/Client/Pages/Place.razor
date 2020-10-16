@@ -1,15 +1,29 @@
 ﻿@page "/place/{Id:int}"
-<h3>Place</h3>
+@using Turister.Shared
+
+<div>
+    <img src="@place.Images.FirstOrDefault()" alt="@place.Title" />
+    <h1>@place.Title</h1>
+    <p>@place.Description</p>
+</div>
 
 @code {
     [Parameter]
     public int Id { get; set; }
 
-    private Place place;
+    private Turister.Shared.Place place;
 
-    protected override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        return base.OnInitializedAsync();
+        place = new Turister.Shared.Place
+        {
+            Description = "This is a description", 
+            Id = 0, 
+            Images = new List<Uri>() {}, 
+            Rating = 3.5f, 
+            Tags = new List<Tag>() {new Tag {Title = "MAMA"}}, 
+            Title = "HELLO"
+        };
     }
 
 }

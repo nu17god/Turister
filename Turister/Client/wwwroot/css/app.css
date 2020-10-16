@@ -181,3 +181,12 @@ app {
         display: block;
     }
 }
+
+.place-card {
+}
+
+.tag {
+    background-color: #1b6ec2;
+    text-decoration-color: #ffffff;
+    border-radius: 50%;
+}

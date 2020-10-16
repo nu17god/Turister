@@ -1,0 +1,20 @@
+﻿@page "/random"
+@using Turister.Shared;
+@using Turister.Client.Shared
+
+<h3>На Удачу</h3>
+<PlaceCard place="@place"></PlaceCard>
+
+@code {
+    private Turister.Shared.Place place = new Turister.Shared.Place
+    {
+        Description = "This is a description",
+        Id = 0,
+        Images = new List<Uri>() {},
+        Rating = 3.5f,
+        Tags = new List<Tag>() {new Tag {Title = "MAMA"}},
+        Title = "HELLO"
+    };
+
+
+}

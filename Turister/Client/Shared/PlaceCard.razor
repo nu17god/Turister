@@ -1,0 +1,20 @@
+﻿@using Turister.Shared
+<div>
+    <div style="width: 50%">
+        <img src="@place.Images.FirstOrDefault()" alt="@place.Title" style="width: 100%"/>
+        @foreach (Tag tag in place.Tags)
+        {
+            <span class="tag">@tag.Title</span>
+        }
+    </div>
+    <div style="width: 50%">
+        <h3>@place.Title</h3>
+        <span class="oi-star"></span>@place.Rating
+        <p>@place.Description</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Turister.Shared.Place place { get; set; }
+}
