@@ -2,16 +2,16 @@
 @inject CounterState State
 @using Turister.Client.State
 
-<h1>Counter</h1>
+<h1>Dataer</h1>
 
-<p>Current count: @State.Count</p>
+<p>Current count: @State.Data</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
     private void IncrementCount()
     {
-        State.Count++;
+        State.Data++;
     }
 
     protected override void OnInitialized()

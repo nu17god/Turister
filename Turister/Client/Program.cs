@@ -34,6 +34,7 @@ namespace Turister.Client
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             builder.Services.AddSingleton<CounterState>();
+            builder.Services.AddSingleton<PlacesState>();
             builder.Services.AddBlazorise(o =>
                 {
                     o.ChangeTextOnKeyPress = true;
