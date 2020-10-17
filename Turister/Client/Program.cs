@@ -7,6 +7,7 @@ using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Turister.Client.State;
+using Turister.Shared;
 
 namespace Turister.Client
 {
@@ -35,6 +36,9 @@ namespace Turister.Client
 
             builder.Services.AddSingleton<CounterState>();
             builder.Services.AddSingleton<PlacesState>();
+
+            builder.Services.AddSingleton<TagParser>();
+
             builder.Services.AddBlazorise(o =>
                 {
                     o.ChangeTextOnKeyPress = true;
