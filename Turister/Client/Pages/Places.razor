@@ -1,41 +1,25 @@
-﻿@page "/place"
-@using Turister.Shared
+﻿@page "/place/{Type}"
+@using Turister.Client.State
 @inject NavigationManager NavigationManager
+@inject PlacesState State
 
-@if (places == null)
+@foreach (var place in State.Data)
 {
-    <p><em>Загрузка</em></p>
+    <PlaceCard Place="@place"></PlaceCard>
 }
-else
-{
-    @foreach (var place in places)
-    {
-        <PlaceCard Place="@place"></PlaceCard>
-    }
-}
+
 @code {
 
-    private List<Turister.Shared.Place> places = new List<Turister.Shared.Place>()
-    {
-        new Turister.Shared.Place
-        {
-            Description = "Ста́рая Ряза́нь (до 1778 года — Рязань, неоф. «Русская Троя») — один из крупнейших древнерусских городов XII—XIII веков, столица Великого Рязанского княжества. Площадь одних только укреплений Старой Рязани во второй половине XII века, не считая городских посадов достигает более 60 га, с предместьями — 75 га. К началу XIII века в городе проживало около 8 тыс. человек[1]. У подножья городских валов располагается современное село Старая Рязань.",
-            Id = 0,
-            Images = new List<Uri>() {new Uri("https://mediaryazan.ru/upload/iblock/41c/26%20-%20jfwn%20kkjxwcuakx%20rbdosext.jpg_Thumbnail0.jpg")},
-            Rating = 4.8f,
-            Tags = new List<Tag>()
-            {
-                new Tag {Title = "Историческая достопримечательность"},
-                new Tag {Title = "Для всей семьи"},
-                new Tag {Title = "Раскопки"},
-                new Tag {Title = "Парковка рядом"}
-            },
-            Title = "Старая Рязань"
-        }
-    };
+    [Parameter]
+    public string Type { get; set; }
 
-    protected override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        return base.OnInitializedAsync();
+        State.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        State.OnChange -= StateHasChanged;
     }
 }

@@ -2,23 +2,26 @@
 
 namespace Turister.Client.State
 {
-    public class CounterState
+    public class CounterState : IState<int>
     {
-        private int _count = 0;
+        private int _data;
+        public event Action OnChange;
 
-        public int Count
+        public CounterState()
         {
-            get
-            {
-                return _count;
-            }
+            _data = PresetData();
+        }
+
+        public int Data
+        {
+            get => _data;
             set
             {
-                _count = value;
+                _data = value;
                 OnChange?.Invoke();
             }
         }
 
-        public event Action OnChange;
+        public int PresetData() => 0;
     }
 }
