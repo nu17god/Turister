@@ -1,6 +1,8 @@
 ﻿@page "/place/{Id:int}"
 @using Turister.Shared
 
+<Filter/>
+
 <div>
     <img src="@place.Images.FirstOrDefault()" alt="@place.Title" />
     <h1>@place.Title</h1>
