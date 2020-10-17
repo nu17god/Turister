@@ -1,0 +1,40 @@
+﻿@page "/place/{Type}"
+@using Turister.Client.State
+@using Turister.Shared
+@inject NavigationManager NavigationManager
+@inject PlacesState State
+@inject TagParser TagParser
+
+<FilterComponent/>
+
+@if (Places == null || Places.Count == 0)
+{
+    // TODO: add common error bootstrap component
+    <span>Мы не смогли в поиск :(</span>
+}
+
+@foreach (var place in Places)
+{
+    <PlaceCard Place="@place"></PlaceCard>
+}
+
+@code {
+
+    [Parameter]
+    public string Type { get; set; }
+
+    private IList<Place> Places { get; set; }
+
+    protected override void OnInitialized()
+    {
+        State.OnChange += StateHasChanged;
+
+        Places = State.Data.Where(p => p.Tags.Any(t => t.Title
+                                                       == TagParser.GetTagTitle(Type))).ToList();
+    }
+
+    public void Dispose()
+    {
+        State.OnChange -= StateHasChanged;
+    }
+}
