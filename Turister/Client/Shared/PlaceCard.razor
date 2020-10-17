@@ -3,27 +3,27 @@
 
 <div class="card">
     <div class="placecardcollumn">
-        <img class="placeimg" src="@place.Images.FirstOrDefault()" alt="@place.Title" @onclick="GoTo" />
+        <img class="placeimg" src="@Place.Images.FirstOrDefault()" alt="@Place.Title" @onclick="GoTo" />
         <div>
-            @foreach (Tag tag in place.Tags)
+            @foreach (Tag tag in Place.Tags)
             {
                 <span class="tag">@tag.Title</span>
             }
         </div>
     </div>
     <div class="placecardcollumn">
-        <h3>@place.Title</h3>
-        <span class="star">@place.Rating</span>
-        <p>@place.Description</p>
+        <h3>@Place.Title</h3>
+        <span class="star">@Place.Rating</span>
+        <p>@Place.Description</p>
     </div>
 </div>
 
 @code {
     [Parameter]
-    public Turister.Shared.Place place { get; set; }
+    public Place Place { get; set; }
 
     public void GoTo()
     {
-        NavigationManager.NavigateTo($"/place/{place.Id}");
+        NavigationManager.NavigateTo($"/Place/{Place.Id}");
     }
 }
