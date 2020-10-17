@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Turister.Shared
 {
-    public class Place
+    public class Tour
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -11,5 +11,6 @@ namespace Turister.Shared
         public string Description { get; set; }
         public double Rating { get; set; }
         public List<Uri> Images { get; set; }
+        public List<Place> Places { get; set; }
     }
 }
