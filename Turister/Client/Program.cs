@@ -36,6 +36,7 @@ namespace Turister.Client
 
             builder.Services.AddSingleton<CounterState>();
             builder.Services.AddSingleton<PlacesState>();
+            builder.Services.AddSingleton<ToursState>();
 
             builder.Services.AddSingleton<TagParser>();
 

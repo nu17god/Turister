@@ -1,0 +1,36 @@
+﻿@page "/tour"
+@using Turister.Client.State
+@using Turister.Client.Shared
+@using Turister.Shared
+@inject NavigationManager NavigationManager
+@inject ToursState State
+
+<FilterComponent />
+
+@if (Tours == null || Tours.Count == 0)
+{
+    // TODO: add common error bootstrap component
+    <span>Мы не смогли в поиск :(</span>
+}
+
+@foreach (var tour in Tours)
+{
+    <TourCard Tour ="tour"></TourCard>
+}
+
+@code {
+
+    private IList<Tour> Tours { get; set; }
+
+    protected override void OnInitialized()
+    {
+        State.OnChange += StateHasChanged;
+
+        Tours = State.Data.ToList();
+    }
+
+    public void Dispose()
+    {
+        State.OnChange -= StateHasChanged;
+    }
+}

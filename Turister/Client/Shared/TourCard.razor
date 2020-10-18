@@ -1,0 +1,34 @@
+﻿@inject NavigationManager NavigationManager
+@using Turister.Shared
+
+<div class="card">
+    <div class="placecardcollumn">
+        <img class="placeimg" src="@Tour.Images.FirstOrDefault()" alt="@Tour.Title" @onclick="GoTo" />
+        <div>
+            @foreach (Tag tag in Tour.Tags)
+            {
+                <span class="tag">@tag.Title</span>
+            }
+        </div>
+    </div>
+    <div class="placecardcollumn">
+        <h3>@Tour.Title</h3>
+        <span class="star">@Tour.Rating</span>
+        <p>@Tour.Description</p>
+    </div>
+    <footer>
+        <span class="">@Tour.Distance км</span>
+        <span>@Tour.PlacesId.Count мест</span>
+        <span>@Tour.Time часа</span>
+    </footer>
+</div>
+
+@code {
+    [Parameter]
+    public Tour Tour { get; set; }
+
+    public void GoTo()
+    {
+        NavigationManager.NavigateTo($"/Tour/{Tour.Id}");
+    }
+}
