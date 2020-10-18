@@ -28,7 +28,10 @@
     protected override void OnInitialized()
     {
         State.OnChange += StateHasChanged;
+    }
 
+    protected override void OnParametersSet()
+    {
         Places = State.Data.Where(p => p.Tags.Any(t => t.Title
                                                        == TagParser.GetTagTitle(Type))).ToList();
     }

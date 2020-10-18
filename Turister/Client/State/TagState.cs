@@ -13,7 +13,8 @@ namespace Turister.Client.State
                 new Tag {Title = "Историческая достопримечательность"},
                 new Tag {Title = "Для всей семьи"},
                 new Tag {Title = "Раскопки"},
-                new Tag {Title = "Парковка рядом"}
+                new Tag {Title = "Парковка рядом"},
+                new Tag {Title = "Отель"},
             };
         }
     }
