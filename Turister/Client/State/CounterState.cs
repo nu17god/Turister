@@ -1,27 +1,7 @@
-﻿using System;
-
-namespace Turister.Client.State
+﻿namespace Turister.Client.State
 {
-    public class CounterState : IState<int>
+    public class CounterState : StateBase<int>
     {
-        private int _data;
-        public event Action OnChange;
-
-        public CounterState()
-        {
-            _data = PresetData();
-        }
-
-        public int Data
-        {
-            get => _data;
-            set
-            {
-                _data = value;
-                OnChange?.Invoke();
-            }
-        }
-
-        public int PresetData() => 0;
+        protected override int PresetData() => 0;
     }
 }

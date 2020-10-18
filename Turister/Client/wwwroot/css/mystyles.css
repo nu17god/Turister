@@ -67,3 +67,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+}
+
+.overflow-visible {
+    overflow: visible !important;
+}
+
+.w-90 {
+    width: 90% !important;
+}
+
+.hoverable {
+    cursor: pointer !important;
+}

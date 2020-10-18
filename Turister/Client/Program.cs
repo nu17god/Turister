@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Blazorise;
@@ -32,22 +33,32 @@ namespace Turister.Client
 
         private static WebAssemblyHost AddServicesAndBuildHost(WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            AddSingletones(builder);
+            AddOtherServices(builder);
 
+            return builder.Build();
+        }
+
+        private static void AddSingletones(WebAssemblyHostBuilder builder)
+        {
             builder.Services.AddSingleton<CounterState>();
             builder.Services.AddSingleton<PlacesState>();
+            builder.Services.AddSingleton<TagState>();
+            builder.Services.AddSingleton<FilterState>();
             builder.Services.AddSingleton<ToursState>();
 
             builder.Services.AddSingleton<TagParser>();
+        }
 
+        private static void AddOtherServices(WebAssemblyHostBuilder builder)
+        {
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddBlazorise(o =>
                 {
                     o.ChangeTextOnKeyPress = true;
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
-
-            return builder.Build();
         }
 
         private static void ConfigurateHost(WebAssemblyHost host)
