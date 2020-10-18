@@ -1,5 +1,7 @@
 ﻿@page "/place/{Id:int}"
 @using Turister.Shared
+@using Turister.Client.State
+@inject PlacesState State
 
 <div>
     <img src="@place.Images.FirstOrDefault()" alt="@place.Title" />
@@ -11,19 +13,12 @@
     [Parameter]
     public int Id { get; set; }
 
-    private Turister.Shared.Place place;
+    private Place place;
 
     protected override void OnInitialized()
     {
-        place = new Turister.Shared.Place
-        {
-            Description = "This is a description", 
-            Id = 0, 
-            Images = new List<Uri>() {}, 
-            Rating = 3.5f, 
-            Tags = new List<Tag>() {new Tag {Title = "MAMA"}}, 
-            Title = "HELLO"
-        };
+        State.OnChange += StateHasChanged;
+        place = State.Data.FirstOrDefault(n => n.Id == Id);
     }
 
 }
