@@ -2,24 +2,26 @@
 @using Turister.Shared
 
 <div class="card">
-    <div class="placecardcollumn">
-        <img class="placeimg" src="@Tour.Images.FirstOrDefault()" alt="@Tour.Title" @onclick="GoTo" />
-        <div>
-            @foreach (Tag tag in Tour.Tags)
-            {
-                <span class="tag">@tag.Title</span>
-            }
+    <div class="card-content">
+        <div class="placecardcollumn">
+            <img class="placeimg" src="@Tour.Images.FirstOrDefault()" alt="@Tour.Title" @onclick="GoTo"/>
+            <div>
+                @foreach (Tag tag in Tour.Tags)
+                {
+                    <Badge Color="Color.Primary">@tag.Title</Badge>
+                }
+            </div>
+        </div>
+        <div class="placecardcollumn">
+            <h3>@Tour.Title</h3>
+            <span class="rating"><i class="far fa-star"></i> @Tour.Rating</span>
+            <p>@Tour.Description</p>
         </div>
     </div>
-    <div class="placecardcollumn">
-        <h3>@Tour.Title</h3>
-        <span class="star">@Tour.Rating</span>
-        <p>@Tour.Description</p>
-    </div>
-    <footer>
-        <span class="">@Tour.Distance км</span>
-        <span>@Tour.PlacesId.Count мест</span>
-        <span>@Tour.Time часа</span>
+    <footer class="tour-card-footer">
+        <span><i class="fas fa-map-marker"></i> @Tour.Distance км</span>
+        <span><i class="fas fa-home"></i> @Tour.PlacesId.Count мест</span>
+        <span><i class="far fa-clock"></i> @Tour.Time.Hours:@Tour.Time.Minutes часа</span>
     </footer>
 </div>
 
