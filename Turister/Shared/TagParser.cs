@@ -7,6 +7,7 @@
             switch (title.ToLower())
             {
                 case "history": return "История";
+                case "hotels": return "Отель";
 
                 default: return title;
             }

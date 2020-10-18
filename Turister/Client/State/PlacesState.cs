@@ -87,6 +87,24 @@ namespace Turister.Client.State
                         new Tag {Title = "Парковка рядом"}
                     },
                 },
+
+                new Place
+                {
+                    Id = 4,
+                    Title = "ОТЕЛЬ РЯЗАНЬ",
+                    Description = "Новый уютный отель располагается в историческом центре города Рязани в нескольких минутах ходьбы от историко-архитектурного музея-заповедника под открытым небом Рязанского Кремля. В шаговой доступности от отеля также находятся Храм Входа Господня в Иерусалим (XVI век), церковь Благовещения Пресвятой Богородицы (XVII век) и Казанский Женский Монастырь (XVI век).",
+
+                    Images = new List<Uri>() {new Uri("https://hotel-ryazan.ru/assets/cache/images/room/komfort-s-dvuspalnoj-krovatyu/main-680x420-bf2.jpg") },
+
+                    Rating = 5,
+
+                    Tags = new List<Tag>()
+                    {
+                        new Tag {Title = "Отель"},
+                        new Tag {Title = "Для всей семьи"},
+                        new Tag {Title = "Парковка рядом"}
+                    },
+                },
             };
         }
     }
