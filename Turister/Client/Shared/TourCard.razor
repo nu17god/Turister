@@ -1,28 +1,28 @@
 ﻿@inject NavigationManager NavigationManager
 @using Turister.Shared
 
-<div class="card">
-    <div class="card-content">
-        <div class="placecardcollumn">
-            <img class="placeimg" src="@Tour.Images.FirstOrDefault()" alt="@Tour.Title" @onclick="GoTo"/>
+<div class="tour-card">
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6">
+            <img class="tour-card-img" src="@Tour.Images.FirstOrDefault()" alt="@Tour.Title" @onclick="GoTo"/>
             <div>
                 @foreach (Tag tag in Tour.Tags)
                 {
                     <Badge Color="Color.Primary">@tag.Title</Badge>
                 }
             </div>
-        </div>
-        <div class="placecardcollumn">
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6">
             <h3>@Tour.Title</h3>
-            <span class="rating"><i class="far fa-star"></i> @Tour.Rating</span>
+            <span class="tour-card-rating"><i class="far fa-star"></i> @Tour.Rating</span>
             <p>@Tour.Description</p>
-        </div>
-    </div>
-    <footer class="tour-card-footer">
+        </Column>
+    </Row>
+    <Row class="tour-card-footer">
         <span><i class="fas fa-map-marker"></i> @Tour.Distance км</span>
         <span><i class="fas fa-home"></i> @Tour.PlacesId.Count мест</span>
         <span><i class="far fa-clock"></i> @Tour.Time.Hours:@Tour.Time.Minutes часа</span>
-    </footer>
+    </Row>
 </div>
 
 @code {
