@@ -1,32 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Turister.Shared;
 
 namespace Turister.Client.State
 {
-    public class ToursState : IState<IList<Tour>>
+    public class ToursState : StateBase<List<Tour>>
     {
-        private List<Tour> _tours;
-
-        public event Action OnChange;
-
-        public ToursState()
-        {
-            _tours = PresetData().ToList();
-        }
-
-        public IList<Tour> Data
-        {
-            get => _tours;
-            set
-            {
-                _tours = value.ToList();
-                OnChange?.Invoke();
-            }
-        }
-        
-        public IList<Tour> PresetData()
+        protected override List<Tour> PresetData()
         {
             return new List<Tour>
             {

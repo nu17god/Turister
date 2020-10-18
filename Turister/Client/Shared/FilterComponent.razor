@@ -1,22 +1,163 @@
 ﻿@using Blazorise.Icons.FontAwesome
+@using Turister.Client.State
+@using Turister.Shared
+
+@inject TagState TagState
+@inject FilterState FilterState
+
 <Accordion Class="mb-5">
-    <Collapse Visible="@Visible">
+    <Collapse Visible="@Visible" Class="overflow-visible">
         <CollapseHeader>
             <Button Clicked="@(() => Visible = !Visible)" Block="true">
-                <Text Color="TextColor.Secondary"  Alignment="TextAlignment.Center">
+                <Text Color="TextColor.Secondary" Alignment="TextAlignment.Center">
                     Фильтр
                     <Blazorise.Icon Name="Visible ? FontAwesomeIcons.AngleUp : FontAwesomeIcons.AngleDown" />
                 </Text>
             </Button>
         </CollapseHeader>
         <CollapseBody>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            <Badge Color="Color.Primary">Primary</Badge>
+            <Addons>
+                <Addon AddonType="AddonType.Start">
+                    <Dropdown>
+                        <DropdownToggle Split="true" />
+                        <DropdownMenu>
+                            @for (int i = 0; i < DropDownData.Count; i++)
+                            {
+                                var localIndex = i;
+                                <DropdownItem Value="@DropDownData[localIndex]" Clicked="@DropDownItemClicked">@DropDownData[localIndex]</DropdownItem>
+                                if (i != DropDownData.Count - 1)
+                                {
+                                    <DropdownDivider />
+                                }
+                            }
+                        </DropdownMenu>
+                    </Dropdown>
+                </Addon>
+                <Addon AddonType="AddonType.Body">
+                    <Autocomplete Data="@DropDownData"
+                                  TextField="@((item) => item)"
+                                  ValueField="@((item) => item)"
+                                  SelectedValue="@SelectedSearchValue"
+                                  SelectedValueChanged="@MySearchHandler"
+                                  Placeholder="Поиск по тегам..."
+                                  Class="w-90" />
+                </Addon>
+            </Addons>
+
+            <div class="m-4">
+                @foreach (var badge in FilterState.Data.Tags.Select(t => t.Title))
+                {
+                    <Badge Color="Color.Primary">
+                        @badge
+                        <a class="hoverable" @onclick="@(() => RemoveTag(badge))">
+                            <Blazorise.Icon Name="@FontAwesomeIcons.Times" />
+                        </a>
+                    </Badge>
+                }
+            </div>
+
+            <Divider />
+
+            <Row>
+                <Column>
+                    <Field Horizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is7">Минимальный рейтинг @FilterState.Data.MinRate</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is5">
+                            <NumericEdit Min="0" Max="5" TValue="double?" Value="@MinRateInitiateValue" ValueChanged="@((e) => MinRateChanged(e))" />
+                        </FieldBody>
+                    </Field>
+                </Column>
+            </Row>
+
+            <Divider Type="DividerType.Dotted" Class="mt-1"/>
+
+            <Row>
+                <Column>
+                    <Field Horizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is7">Максимальное расстояние (КМ) @FilterState.Data.MaxDistance</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is5">
+                            <NumericEdit Min="0" Max="299" TValue="double?" Value="@MaxDistanceInitiateValue" ValueChanged="@((e) => MaxDistanceChanged(e))" />
+                        </FieldBody>
+                    </Field>
+                </Column>
+            </Row>
+
         </CollapseBody>
     </Collapse>
 </Accordion>
 
+@functions
+{
+    void RemoveTag(string title)
+    {
+        FilterState.RemoveTag(new Tag { Title = title });
+    }
+}
 
 @code {
-    private bool Visible { get; set; } = false;
+    private double? MinRateInitiateValue { get; set; } = 0.00;
+    private double? MaxDistanceInitiateValue { get; set; } = 300;
+    private bool Visible { get; set; }
+    object SelectedSearchValue { get; set; }
+    private List<string> DropDownData { get; set; } = new List<string>();
+
+    public class MySelectModel
+    {
+        public string MyValueField { get; set; }
+        public string MyTextField { get; set; }
+    }
+
+    protected override void OnInitialized()
+    {
+        FilterState.ClearFilter();
+        DropDownData = TagState.Data.Select(x => x.Title).ToList();
+
+        FilterState.OnChange += StateHasChanged;
+    }
+
+    void MySearchHandler(object value)
+    {
+        SelectedSearchValue = string.Empty;
+
+        TryAddTag(value);
+    }
+
+    void DropDownItemClicked(object value) => TryAddTag(value);
+
+    void TryAddTag(object value)
+    {
+        if (value is string badge)
+        {
+            FilterState.AddTag(new Tag { Title = badge });
+        }
+    }
+
+    void MinRateChanged(double? rate)
+    {
+        if (rate != null)
+        {
+            FilterState.Data.MinRate = rate.Value;
+        }
+        else
+        {
+            FilterState.Data.MinRate = 0;
+        }
+    }
+
+    void MaxDistanceChanged(double? distance)
+    {
+        if (distance != null)
+        {
+            FilterState.Data.MaxDistance = distance.Value;
+        }
+        else
+        {
+            FilterState.Data.MaxDistance = 300;
+        }
+    }
+
+    public void Dispose()
+    {
+        FilterState.OnChange -= StateHasChanged;
+    }
 }
