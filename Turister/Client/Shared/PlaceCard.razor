@@ -1,21 +1,24 @@
 ﻿@inject NavigationManager NavigationManager
 @using Turister.Shared
 
-<div class="card">
-    <div class="placecardcollumn">
-        <img class="placeimg" src="@Place.Images.FirstOrDefault()" alt="@Place.Title" @onclick="GoTo" />
-        <div>
-            @foreach (Tag tag in Place.Tags)
-            {
-                <span class="tag">@tag.Title</span>
-            }
-        </div>
-    </div>
-    <div class="placecardcollumn">
-        <h3>@Place.Title</h3>
-        <span class="star">@Place.Rating</span>
-        <p>@Place.Description</p>
-    </div>
+<div class="tour-card">
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6">
+            <img class="tour-card-img" src="@Place.Images.FirstOrDefault()" alt="@Place.Title" @onclick="GoTo"/>
+            <div>
+                @foreach (Tag tag in Place.Tags)
+                {
+                    <Badge Color="Color.Primary">@tag.Title</Badge>
+                }
+            </div>
+            <footer><i class="fas fa-map-marker"></i> @Place.Distance км</footer>
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6">
+            <h3 class="tour-card-caps">@Place.Title</h3>
+            <span class="tour-card-rating tour-card-caps">@Place.Rating</span>
+            <p>@Place.Description</p>
+        </Column>
+    </Row>
 </div>
 
 @code {
