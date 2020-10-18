@@ -24,11 +24,12 @@ namespace Turister.Client.State
                     Tags = new List<Tag>()
                     {
                         new Tag {Title = "История"},
-                        new Tag {Title = "Историческая достопримечательность"},
+                        new Tag {Title = "Достопримечательность"},
                         new Tag {Title = "Для всей семьи"},
                         new Tag {Title = "Раскопки"},
                         new Tag {Title = "Парковка рядом"}
                     },
+                    Distance = 1.5
                 },
 
                 new Place
@@ -44,10 +45,11 @@ namespace Turister.Client.State
                     Tags = new List<Tag>()
                     {
                         new Tag {Title = "История"},
-                        new Tag {Title = "Историческая достопримечательность"},
+                        new Tag {Title = "Достопримечательность"},
                         new Tag {Title = "Для всей семьи"},
                         new Tag {Title = "Парковка рядом"}
                     },
+                    Distance = 2
                 },
 
                 new Place
@@ -63,10 +65,11 @@ namespace Turister.Client.State
                     Tags = new List<Tag>()
                     {
                         new Tag {Title = "История"},
-                        new Tag {Title = "Историческая достопримечательность"},
+                        new Tag {Title = "Достопримечательность"},
                         new Tag {Title = "Для всей семьи"},
                         new Tag {Title = "Парковка рядом"}
                     },
+                    Distance = 2
                 },
 
                 new Place
@@ -75,17 +78,18 @@ namespace Turister.Client.State
                     Title = "Христорождественский собор",
                     Description = "Христорожде́ственский собо́р Рязанского Кремля — православный кафедральный собор города Рязани. Наряду с Успенским собором — один из двух главных храмов Рязанской митрополии. Является первым каменным зданием на территории Рязанского Кремля, и одним из самых древних из сохранившийся до наших дней зданий Рязанской области.",
 
-                    Images = new List<Uri>() {new Uri("https://labuda.blog/wp-content/uploads/2020/08/1245d6949d2f4891aa2a62aa8f41c3e2.jpg") },
+                    Images = new List<Uri>() {new Uri("https://lh3.googleusercontent.com/proxy/k4asVEV0uKYIp1qjwPyFyUDTCYFe3Bviw-QC8Wk5gkOIUbVeYXR8KCz7GwBXq-6YTWTGRKlvJsB6h_kuc7u6XB-78wHauXq3XwDxfdDVQjWtk29Eg36GrEVw6g") },
 
                     Rating = 5,
 
                     Tags = new List<Tag>()
                     {
                         new Tag {Title = "История"},
-                        new Tag {Title = "Историческая достопримечательность"},
+                        new Tag {Title = "Достопримечательность"},
                         new Tag {Title = "Для всей семьи"},
                         new Tag {Title = "Парковка рядом"}
                     },
+                    Distance = 2.5
                 },
 
                 new Place
@@ -104,6 +108,8 @@ namespace Turister.Client.State
                         new Tag {Title = "Для всей семьи"},
                         new Tag {Title = "Парковка рядом"}
                     },
+
+                    Distance = 3
                 },
             };
         }

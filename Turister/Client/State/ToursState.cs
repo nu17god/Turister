@@ -27,7 +27,7 @@ namespace Turister.Client.State
                     Tags = new List<Tag>
                     {
                         new Tag {Title = "История"},
-                        new Tag {Title = "Историческая достопримечательность"},
+                        new Tag {Title = "Достопримечательность"},
                         new Tag {Title = "Для всей семьи"},
                         new Tag {Title = "Раскопки"},
                         new Tag {Title = "Парковка рядом"}

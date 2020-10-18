@@ -11,12 +11,13 @@
                     <Badge Color="Color.Primary">@tag.Title</Badge>
                 }
             </div>
-            <footer><i class="fas fa-map-marker"></i> @Place.Distance км</footer>
+            
         </Column>
         <Column ColumnSize="ColumnSize.Is6">
             <h3 class="tour-card-caps">@Place.Title</h3>
-            <span class="tour-card-rating tour-card-caps">@Place.Rating</span>
+            <span class="tour-card-rating tour-card-caps"><i class="far fa-star"></i> @Place.Rating</span>
             <p>@Place.Description</p>
+            <span class="place-card-footer-span tour-card-caps"><i class="fas fa-map-marker"></i> @Place.Distance км</span>
         </Column>
     </Row>
 </div>

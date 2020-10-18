@@ -3,19 +3,43 @@
 @inject PlacesState State
 
 <PlaceCard Place="@Place"></PlaceCard>
-<div class="card">
-    <span class="random-button arrow-left">Назад</span>
-    <span class="random-button random-like"></span>
-    <span class="random-button arrow-right">Дальше</span>
-</div>
+<Row class="tour-card random-card">
+    <Column ColumnSize="ColumnSize.Is4"><span class="random-button" @onclick="Previous"><i class="fas fa-chevron-left"></i> Назад</span></Column>
+    <Column ColumnSize="ColumnSize.Is4"><span class="random-button" @onclick="Like"><i class=@LikeClass></i></span></Column>
+    <Column ColumnSize="ColumnSize.Is4"><span class="random-button" @onclick="Next">Дальше <i class="fas fa-chevron-right"></i></span></Column>
+</Row>
 
 @code {
     private Turister.Shared.Place Place { get; set; }
+    private List<Turister.Shared.Place> places { get; set; }
+    private int current = 0;
+    private string LikeClass = "far fa-heart";
+
 
     protected override Task OnInitializedAsync()
     {
-        Place = State.Data.First();
-
+        Random rnd = new Random(new Guid().GetHashCode());
+        places = State.Data.ToList().OrderBy(n => rnd.Next()).ToList();
+        Next();
         return base.OnInitializedAsync();
+    }
+
+    private void Next()
+    {
+        LikeClass = "far fa-heart";
+        current = ++current == places.Count ? 0: current;
+        Place = places[current];
+    }
+
+    private void Previous()
+    {
+        LikeClass = "far fa-heart";
+        current = current == 0 ? places.Count - 1 : --current;
+        Place = places[current];
+    }
+
+    private void Like()
+    {
+        LikeClass = LikeClass.Equals("far fa-heart") ? "fas fa-heart" : "far fa-heart";
     }
 }

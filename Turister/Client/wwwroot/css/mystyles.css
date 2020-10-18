@@ -3,13 +3,12 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     padding: 10px;
-    margin: 25px;
+    margin: 25px 0px;
     color: #60646E;
-    max-font-size: 36px;
 }
 
 .tour-card-caps {
-    font-size: 2vw;
+    font-size: 2.5vw;
 }
 
 .tour-card h3 {
@@ -18,7 +17,7 @@
 
 .tour-card p {
     font-weight: bold;
-    font-size: 1vh;
+    font-size: 1.5vw;
 }
 
 .tour-card-rating {
@@ -29,6 +28,7 @@
     border-radius: 10px;
     width: 100%;
     cursor: pointer;
+    max-height: 360px;
 }
 
 .tour-card-footer {
@@ -40,16 +40,26 @@
     margin: 10px auto;
 }
 
+.place-card-footer-span {
+    margin: 25px auto 10px auto;
+}
+
 .overflow-visible {
     overflow: visible !important;
 }
 
 .random-button {
+    display: inline-block;
     padding: 10px;
     background-color: #C8C8C8;
     color: #60646E;
-    border-radius: 40px;
+    border-radius: 100px;
     margin: auto;
+}
+
+.random-card {
+    text-align: center;
+    font-size: 3vw;
 }
 
 .w-90 {
@@ -58,4 +68,23 @@
 
 .hoverable {
     cursor: pointer !important;
+}
+
+.nav-menu-app-title {
+    color: #C19A5E;
+    font-style: italic;
+}
+
+/* Я ХУЙ ЗНАЕТ ПОЧЕМУ ОНО НЕ МЕНЯТСЯ ЧЕРЕЗ app.css так что меняю тут */
+.sidebar {
+    background-image: linear-gradient(180deg, #006E9A 100%, #FFFFFF 100%)
+}
+
+.sidebar .top-row {
+    background-color: rgba(0,0,0,0.2);
+}
+/*Я ХУЙ ЗНАЕТ ПОЧЕМУ ОНО НЕ МЕНЯТСЯ ЧЕРЕЗ app.css так что меняю тут*/
+
+.icon-width-10px {
+    width: 15px;
 }
