@@ -5,27 +5,9 @@ using Turister.Shared;
 
 namespace Turister.Client.State
 {
-    public class PlacesState : IState<IList<Place>>
+    public class PlacesState : StateBase<List<Place>>
     {
-        private List<Place> _places;
-        public event Action OnChange;
-
-        public PlacesState()
-        {
-            _places = PresetData().ToList();
-        }
-
-        public IList<Place> Data
-        {
-            get => _places;
-            set
-            {
-                _places = value.ToList();
-                OnChange?.Invoke();
-            }
-        }
-
-        public IList<Place> PresetData()
+        protected override List<Place> PresetData()
         {
             return new List<Place>()
             {
