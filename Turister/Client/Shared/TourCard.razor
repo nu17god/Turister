@@ -13,12 +13,12 @@
             </div>
         </Column>
         <Column ColumnSize="ColumnSize.Is6">
-            <h3>@Tour.Title</h3>
-            <span class="tour-card-rating"><i class="far fa-star"></i> @Tour.Rating</span>
+            <h3 class="tour-card-caps">@Tour.Title</h3>
+            <span class="tour-card-rating tour-card-caps"><i class="far fa-star"></i> @Tour.Rating</span>
             <p>@Tour.Description</p>
         </Column>
     </Row>
-    <Row class="tour-card-footer">
+    <Row class="tour-card-footer tour-card-caps">
         <span><i class="fas fa-map-marker"></i> @Tour.Distance км</span>
         <span><i class="fas fa-home"></i> @Tour.PlacesId.Count мест</span>
         <span><i class="far fa-clock"></i> @Tour.Time.Hours:@Tour.Time.Minutes часа</span>
